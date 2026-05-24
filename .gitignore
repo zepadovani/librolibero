@@ -21,6 +21,12 @@ dist/
 *.azw3
 *.djvu
 books/
+# IDE-specific ignore files
+.claudeignore
+.geminiignore
+.copilotignore
+.cursorignore
+
 # OS
 .DS_Store
 Thumbs.db
