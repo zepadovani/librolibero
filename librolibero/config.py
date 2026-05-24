@@ -2,8 +2,13 @@
 
 import os
 import sys
-import tomli
 from dotenv import load_dotenv
+
+# tomllib é stdlib no Python 3.11+; cai em tomli para versões anteriores
+try:
+    import tomllib          # type: ignore[import]
+except ImportError:
+    import tomli as tomllib  # type: ignore[no-redef]
 
 
 def _env_path() -> str:
@@ -79,7 +84,7 @@ def load_config():
     
     if os.path.exists(config_path):
         with open(config_path, "rb") as f:
-            user_config = tomli.load(f)
+            user_config = tomllib.load(f)
         defaults.update(user_config)
     
     return defaults

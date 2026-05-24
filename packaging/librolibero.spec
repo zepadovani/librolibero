@@ -40,8 +40,11 @@ hidden_imports = [
     "pyzotero.zotero",
     # dotenv
     "dotenv",
-    # tomli (Python < 3.11)
-    "tomli",
+    # TOML: tomllib é stdlib (Python 3.11+); tomli como fallback
+    "tomllib",
+    # PySide6 SVG (frequentemente esquecido pelo coletor automático)
+    "PySide6.QtSvg",
+    "PySide6.QtSvgWidgets",
 ]
 
 # ── Ícones ─────────────────────────────────────────────────────────────────

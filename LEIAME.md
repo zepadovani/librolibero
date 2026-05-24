@@ -1,6 +1,8 @@
+![logo do librolibero](librolibero.png)
+
 # librolibero
 
-Um importador de linha de comando que rastreia uma pasta de PDFs e EPUBs, extrai ISBNs, busca metadados bibliográficos em serviços online e cria itens do tipo *book* no Zotero com arquivo vinculado (*linked file*), compatível com o plugin ZotMoov.
+Um importador que rastreia uma pasta de PDFs e EPUBs, extrai ISBNs, busca metadados bibliográficos em serviços online e cria itens do tipo *livro* no Zotero com arquivo vinculado (*linked file*), compatível com o plugin ZotMoov.
 
 ## Descrição
 
@@ -24,6 +26,7 @@ Título -- Autor -- Ano -- Editora -- isbn13 XXXXXXXXXXXXX -- hash -- sufixo.pdf
 
 - Python 3.8+
 - Credenciais da API do Zotero (ID e chave de acesso)
+- PySide6 (somente para a interface gráfica)
 
 ## Instalação
 
@@ -39,6 +42,29 @@ Ou instalar as dependências diretamente:
 pip install -r requirements.txt
 ```
 
+### PySide6 (interface gráfica)
+
+A interface gráfica requer PySide6. O método de instalação depende do seu ambiente Python:
+
+**pip / virtualenv:**
+```bash
+pip install PySide6
+```
+
+**conda / mamba — use o canal `conda-forge`** (o canal padrão `defaults` não distribui o PySide6):
+```bash
+conda install -c conda-forge pyside6
+# ou, com mamba:
+mamba install -c conda-forge pyside6
+```
+
+> **Dica:** para evitar conflitos de canal, adicione o `conda-forge` no topo da lista em `~/.condarc`:
+> ```yaml
+> channels:
+>   - conda-forge
+>   - defaults
+> ```
+
 ### Dependências
 
 - **pyzotero** — acesso à API do Zotero
@@ -46,9 +72,10 @@ pip install -r requirements.txt
 - **pymupdf** (fitz) — extração de ISBN de PDFs
 - **ebooklib** — extração de metadados de EPUBs
 - **requests** — requisições HTTP
-- **tomli** — leitura de arquivos TOML
+- **tomli** — leitura de arquivos TOML (Python ≤ 3.10; versões mais recentes usam `tomllib` da stdlib)
 - **python-dotenv** — carregamento de variáveis de ambiente
 - **send2trash** — move arquivos para lixeira com segurança
+- **PySide6** — interface gráfica (Qt para Python)
 
 ## Configuração
 
@@ -83,7 +110,40 @@ zotmoov_mode = false
 - **extensions** — extensões de arquivo a processar (padrão: `[".pdf", ".epub"]`)
 - **zotmoov_mode** — quando `true`, suprime o comportamento de lixeira do `--trash-after-import` pois o plugin ZotMoov move os arquivos automaticamente (padrão: `false`)
 
-## Uso
+## Interface Gráfica (GUI)
+
+Além da linha de comando, o librolibero oferece uma interface gráfica construída com PySide6 (Qt para Python).
+
+### Executar a GUI
+
+```bash
+python -m librolibero.gui.app
+```
+
+O aplicativo abre diretamente na tela de **Varredura** se as credenciais já estiverem salvas, ou na tela de **Configuração** na primeira execução.
+
+### Funcionalidades da GUI
+
+- Configurar credenciais do Zotero em um formulário visual (chave API oculta por padrão)
+- Selecionar a pasta de livros com um seletor de arquivos nativo
+- Barra de progresso e log em tempo real
+- Cancelar a varredura a qualquer momento
+- Diálogos de erro modais para problemas de autenticação e conectividade
+
+### Aplicativo instalável (macOS / Windows)
+
+Instaladores prontos podem ser gerados com os scripts PyInstaller incluídos:
+
+```bash
+bash packaging/build.sh     # → dist/librolibero.app  (macOS)
+packaging\build.bat         # → dist\librolibero\librolibero.exe  (Windows)
+```
+
+Veja [packaging/README.md](packaging/README.md) para detalhes completos.
+
+---
+
+## Uso (linha de comando)
 
 ### Comando Básico
 
@@ -190,7 +250,23 @@ librolibero/
 ├── scanner.py            # Rastreamento de arquivos e extração de ISBN
 ├── metadata.py           # Busca de metadados via APIs
 ├── zotero_client.py      # Integração com a API do Zotero
-└── report.py             # Logging e resumo final
+├── report.py             # Logging e resumo final
+├── icon/                 # Ícones do aplicativo (SVG + PNG)
+└── gui/
+    ├── app.py            # Janela principal (QStackedWidget)
+    ├── config_view.py    # Tela de configuração de credenciais
+    ├── scanner_view.py   # Tela de seleção de pasta
+    ├── progress_view.py  # Tela de progresso da importação
+    ├── worker.py         # Thread de varredura (QThread)
+    └── resources.py      # Utilitários de recursos (caminhos, logo SVG)
+
+packaging/
+├── librolibero.spec      # Spec PyInstaller
+├── entrypoint_gui.py     # Ponto de entrada para o PyInstaller
+├── make_icons.py         # Gerador de ícones (.icns e .ico)
+├── build.sh              # Script de build macOS/Linux
+├── build.bat             # Script de build Windows
+└── README.md             # Instruções de empacotamento
 ```
 
 ## Logs
@@ -212,19 +288,33 @@ Quando o mesmo ISBN já existe no Zotero, o programa oferece opções interativa
 
 Escolher opção 4, 5 ou 6 aplica a estratégia a todos os próximos arquivos, evitando perguntas repetidas.
 
-## Troubleshooting
+## Solução de Problemas
 
 ### "ZOTERO_ID ou zoteroKEY não encontrado"
-Certifique-se de que o arquivo `.nosync/.env` existe e contém as credenciais corretas.
+Certifique-se de que o arquivo `.nosync/.env` existe e contém as credenciais corretas. Na interface gráfica, use a tela de Configuração para salvar as credenciais.
 
 ### "Metadados não encontrados"
-Se o ISBN não for extraído corretamente, o programa tenta extrair metadados do nome do arquivo. Verifique se o formato do nome está próximo ao esperado (título, autor, ano).
+Se o ISBN não for extraído corretamente, o programa tenta extrair metadados do nome do arquivo. Verifique se o formato do nome está próximo ao esperado (título, autor, ano). Este fallback funciona tanto na CLI quanto na GUI.
 
-### ZotMoov Mode
+### PySide6 não encontrado (ambiente conda)
+Use o canal `conda-forge` — o canal padrão não distribui o PySide6:
+```bash
+conda install -c conda-forge pyside6
+```
+
+### Aplicativo não abre após empacotar (macOS)
+O macOS pode bloquear aplicativos não assinados. Execute no terminal para remover a quarentena:
+```bash
+xattr -cr dist/librolibero.app
+```
+Para ver mensagens de erro detalhadas, execute o binário diretamente:
+```bash
+dist/librolibero/librolibero
+```
+
+### Modo ZotMoov
 Se usar o plugin ZotMoov, configure `zotmoov_mode = true` no `config.toml` para evitar conflitos com o gerenciamento automático de arquivos.
 
 ## Licença
 
-Este programa é um software livre: você pode redistribuí-lo e/ou modificá-lo sob os termos da Licença Pública Geral GNU (GNU General Public License) conforme publicada pela Free Software Foundation, seja a versão 3 da Licença ou (a seu critério) qualquer versão posterior.
-
-Consulte o arquivo [LICENSE](LICENSE) para obter mais detalhes.
+Projeto pessoal. Sinta-se livre para usar e modificar conforme necessário.
