@@ -6,3 +6,4 @@ requests
 tomli
 python-dotenv
 send2trash
+PySide6

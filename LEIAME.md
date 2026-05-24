@@ -225,4 +225,6 @@ Se usar o plugin ZotMoov, configure `zotmoov_mode = true` no `config.toml` para 
 
 ## Licença
 
-Projeto pessoal. Sinta-se livre para usar e modificar conforme necessário.
+Este programa é um software livre: você pode redistribuí-lo e/ou modificá-lo sob os termos da Licença Pública Geral GNU (GNU General Public License) conforme publicada pela Free Software Foundation, seja a versão 3 da Licença ou (a seu critério) qualquer versão posterior.
+
+Consulte o arquivo [LICENSE](LICENSE) para obter mais detalhes.

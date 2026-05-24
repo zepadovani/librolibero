@@ -1,3 +1,5 @@
+![librolibero logo](librolibero.png)
+
 # librolibero
 
 A command-line importer that tracks a folder of PDFs and EPUBs, extracts ISBNs, searches for bibliographic metadata from online services, and creates *book* items in Zotero with linked file attachments, compatible with the ZotMoov plugin.
@@ -24,6 +26,7 @@ Title -- Author -- Year -- Publisher -- isbn13 XXXXXXXXXXXXX -- hash -- suffix.p
 
 - Python 3.8+
 - Zotero API credentials (ID and access key)
+- PySide6 (graphical interface only)
 
 ## Installation
 
@@ -39,6 +42,29 @@ Or install dependencies directly:
 pip install -r requirements.txt
 ```
 
+### PySide6 (graphical interface)
+
+The GUI requires PySide6. The installation method depends on your Python environment:
+
+**pip / virtualenv:**
+```bash
+pip install PySide6
+```
+
+**conda / mamba — use the `conda-forge` channel** (the default `defaults` channel does not ship PySide6):
+```bash
+conda install -c conda-forge pyside6
+# or, with mamba:
+mamba install -c conda-forge pyside6
+```
+
+> **Tip:** to avoid channel conflicts, add `conda-forge` to the top of your channel list in `~/.condarc`:
+> ```yaml
+> channels:
+>   - conda-forge
+>   - defaults
+> ```
+
 ### Dependencies
 
 - **pyzotero** — Zotero API access
@@ -49,6 +75,7 @@ pip install -r requirements.txt
 - **tomli** — TOML file parsing
 - **python-dotenv** — environment variable loading
 - **send2trash** — safe file deletion to trash
+- **PySide6** — graphical interface (Qt for Python)
 
 ## Configuration
 
@@ -82,6 +109,39 @@ zotmoov_mode = false
 - **directory** — path to folder containing books (default: `books/`)
 - **extensions** — file extensions to process (default: `[".pdf", ".epub"]`)
 - **zotmoov_mode** — when `true`, suppresses trash behavior of `--trash-after-import` since ZotMoov plugin moves files automatically (default: `false`)
+
+## Graphical Interface (GUI)
+
+In addition to the command line, librolibero ships a graphical interface built with PySide6 (Qt for Python).
+
+### Running the GUI
+
+```bash
+python -m librolibero.gui.app
+```
+
+The app opens directly on the **Scanner** screen if credentials are already saved, or on the **Settings** screen on first launch.
+
+### GUI Features
+
+- Configure Zotero credentials with a visual form (API key hidden by default)
+- Select the books folder with a native file picker
+- Real-time progress bar and scrolling log
+- Cancel scan at any time
+- Modal error dialogs for authentication and connectivity issues
+
+### Packaged app (macOS / Windows)
+
+Pre-built installers can be generated with the included PyInstaller scripts:
+
+```bash
+bash packaging/build.sh     # → dist/librolibero.app  (macOS)
+packaging\build.bat         # → dist\librolibero\librolibero.exe  (Windows)
+```
+
+See [packaging/README.md](packaging/README.md) for full details.
+
+---
 
 ## Usage
 
@@ -225,4 +285,6 @@ If using the ZotMoov plugin, configure `zotmoov_mode = true` in `config.toml` to
 
 ## License
 
-Personal project. Feel free to use and modify as needed.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+See the [LICENSE](LICENSE) file for more details.

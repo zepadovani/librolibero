@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="60mm"
+   height="60mm"
+   viewBox="0 0 60 60"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
+   sodipodi:docname="librolibero_quad.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.68251301"
+     inkscape:cx="98.166627"
+     inkscape:cy="109.15543"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath391906">
+      <path
+         id="path391906"
+         style="fill:#aa0000;stroke:none;stroke-width:2.96222;stroke-linejoin:round;stroke-dasharray:none"
+         d="m 1414.1481,2016.5761 v 10.9302 h 3.7475 v 39.3481 h 16.8634 v -39.3481 h 24.3584 v -10.9302 z" />
+    </clipPath>
+    <rect
+       x="1416.8624"
+       y="2010.5953"
+       width="395.17932"
+       height="451.08273"
+       id="rect391904" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g1"
+       transform="translate(-8.8079886,-12.830651)">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:2.10894;stroke-linejoin:round;stroke-dasharray:none"
+         d="m 14.50656,59.776349 h 14.66219 v -4.76629 H 14.50656 v -41.11695 h 30.00506 c 0,0 3.1523,-0.35025 3.26905,3.50254 0.13443,4.43605 0,8.39564 0,8.39564"
+         id="path391899"
+         sodipodi:nodetypes="ccccccsc" />
+      <path
+         style="font-size:58.6667px;line-height:1.06;font-family:Helvetica;-inkscape-font-specification:Helvetica;white-space:pre;fill:#333333;stroke-width:18.2854;stroke-linejoin:round"
+         d="m 1442.931,2042.9411 -6.388,-18.5912 -6.7891,18.5912 z m -9.3672,-24.836 h 6.4453 l 15.2683,42.0808 h -6.2448 l -4.2683,-12.6042 h -16.6432 l -4.5547,12.6042 h -5.8437 z"
+         id="text391903"
+         transform="matrix(0.71397183,0,0,0.71397183,-994.39682,-1422.7636)"
+         aria-label="A"
+         clip-path="url(#clipPath391906)" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:2.10894;stroke-linejoin:round;stroke-dasharray:none"
+         d="m 29.77389,71.776339 h 30.70842 c 2.9042,0 2.56569,-2.38314 2.56569,-2.38314 0,0 0.39394,-2.36065 -2.56569,-2.38314 H 29.77389 v -41.11695 h 30.00507 c 0,0 3.15229,-0.35026 3.26904,3.50253 0.13443,4.43605 0,31.46272 0,31.46272"
+         id="path391901"
+         sodipodi:nodetypes="cscccccsc" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.71397183,0,0,0.71397183,-977.90146,-1410.1486)"
+         id="text391904"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:58.6667px;line-height:1.06;font-family:'Be Vietnam Pro';-inkscape-font-specification:'Be Vietnam Pro Medium';text-align:start;text-decoration-color:#000000;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect391904);display:inline;fill:#800000;stroke:none;stroke-width:18.2854;stroke-linejoin:round;stroke-dasharray:none"><tspan
+           x="1416.8633"
+           y="2060.1859"
+           id="tspan4"><tspan
+             style="font-weight:normal;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+             id="tspan3">Z</tspan></tspan></text>
+    </g>
+  </g>
+</svg>
