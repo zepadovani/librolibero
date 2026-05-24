@@ -1,4 +1,6 @@
-![librolibero logo](librolibero.png)
+<p align="center">
+  <a href="https://github.com/librolibero/"><img src="librolibero.png" alt="librolibero logo" width="240"></a>
+</p>
 
 # librolibero
 
