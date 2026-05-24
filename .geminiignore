@@ -1,0 +1,34 @@
+# ═══════════════════════════════════════════════════════
+#  .geminiignore — Otimização de contexto para Gemini
+# ═══════════════════════════════════════════════════════
+
+# PDFs e ebooks — binários pesados
+*.pdf
+*.epub
+*.mobi
+*.azw3
+*.djvu
+books/
+.nosync/
+
+# Logs
+logs/
+
+# Python cache e build
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+
+# Credenciais
+config.toml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Livros processados
+books/

@@ -1,0 +1,38 @@
+# ═══════════════════════════════════════════════════════
+#  .claudeignore — Otimização de contexto para agentes
+# ═══════════════════════════════════════════════════════
+# Evita que agentes indexem arquivos pesados/irrelevantes,
+# economizando tokens. O código-fonte em librolibero/ é
+# mantido visível para os agentes.
+
+# PDFs e ebooks — binários, não analisáveis por agentes
+*.pdf
+*.epub
+*.mobi
+*.azw3
+*.djvu
+books/
+
+.nosync/
+
+# Logs gerados pelo script
+logs/
+
+# Cache e build Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+
+# Configuração com credenciais
+config.toml
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Pasta de livros processados
+books/

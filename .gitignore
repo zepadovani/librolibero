@@ -1,0 +1,26 @@
+# Configuração com credenciais
+config.toml
+
+# Logs de execução
+logs/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.nosync/
+
+# PDFs e ebooks (não versionar binários)
+*.pdf
+*.epub
+*.mobi
+*.azw3
+*.djvu
+books/
+# OS
+.DS_Store
+Thumbs.db

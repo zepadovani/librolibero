@@ -1,0 +1,8 @@
+pyzotero
+isbnlib
+pymupdf
+ebooklib
+requests
+tomli
+python-dotenv
+send2trash

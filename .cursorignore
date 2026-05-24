@@ -1,0 +1,33 @@
+# ═══════════════════════════════════════════════════════
+#  .cursorignore — Otimização de contexto para Cursor
+# ═══════════════════════════════════════════════════════
+
+# PDFs e ebooks — binários pesados
+*.pdf
+*.epub
+*.mobi
+*.azw3
+*.djvu
+books/
+# Logs
+logs/
+.nosync/
+
+# Python cache e build
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+
+# Credenciais
+config.toml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Livros processados
+books/

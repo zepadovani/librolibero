@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "librolibero"
+version = "0.1.0"
+description = "Importador ISBN → Zotero para rastrear PDFs/EPUBs em pasta books/"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    {name = "Padovani"}
+]
+dependencies = [
+    "pyzotero",
+    "isbnlib",
+    "pymupdf",
+    "ebooklib",
+    "requests",
+    "tomli",
+    "python-dotenv"
+]
+
+[project.scripts]
+librolibero = "librolibero.__main__:main"
